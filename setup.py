@@ -191,7 +191,7 @@ else:
             subprocess.call(["sudo", dirIn + "/setupAlias.sh",INDICATORFILE])
             print "---------------------------------"
             print "Indicator installed close terminal"
-            print "To run script type: btc-indicator"
+            print "To run script type: cryptocoin-indicator"
             print "You must open a new terminal first"
         except OSError:
             print 'Error creating script alias'

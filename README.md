@@ -80,9 +80,9 @@ How the settings file works
 ------
 first line is the install directory
 first number is the refresh time  in seconds
-second line is exchange for btc (mtgox,btce,bitstamp, etc)
+second line is exchange for btc (btce,bitstamp, etc)
 third line is a boolean (true or false) for toggling the display of btc data
-fourth line is exchange for ltc (mtgox,btce)
+fourth line is exchange for ltc (btce)
 fifth line is a boolean (true or false) for toggling the display of ltc data
 sixth line is exchange for nmc (btce)
 seventh line is a boolean (true or false) for toggling the display of nmc data

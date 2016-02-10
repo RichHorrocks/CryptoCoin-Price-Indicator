@@ -170,8 +170,6 @@ else:
         file = open(SETTINGSFILE, 'w')
         file.write(dirApp+' \n')
         file.write('10 \n')
-        file.write('mtgox \n')
-        file.write('True \n')
         file.write('btce \n')
         file.write('True \n')
         file.write('btce \n')

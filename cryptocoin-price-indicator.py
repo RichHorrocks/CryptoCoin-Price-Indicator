@@ -141,8 +141,6 @@ class CryptoCoinPriceIndicator:
         self.BTCtickers = None
         self.btceBTC = gtk.RadioMenuItem(self.BTCtickers,"BTC-E"); self.btceBTC.connect("activate", lambda x: self.toggleBTCdisplay("btce")); self.btceBTC.show()
         self.BTCtickers = self.btceBTC
-        self.mtgoxBTC = gtk.RadioMenuItem(self.BTCtickers,"MtGox"); self.mtgoxBTC.connect("activate", lambda x: self.toggleBTCdisplay("mtgox")); self.mtgoxBTC.show()
-        self.BTCtickers = self.mtgoxBTC
         self.bitstampBTC = gtk.RadioMenuItem(self.BTCtickers,"BitStamp"); self.bitstampBTC.connect("activate", lambda x: self.toggleBTCdisplay("bitstamp")); self.bitstampBTC.show()
         self.BTCtickers = self.bitstampBTC
         self.blockchainBTC = gtk.RadioMenuItem(self.BTCtickers,"BlockChain"); self.blockchainBTC.connect("activate", lambda x: self.toggleBTCdisplay("blockchain")); self.blockchainBTC.show()
@@ -150,7 +148,6 @@ class CryptoCoinPriceIndicator:
 
         self.defSet = gtk.MenuItem("Choose exchange : "); self.defSet.show()
         self.menu.append(self.defSet)
-        self.menu.append(self.mtgoxBTC); self.menu.append(self.btceBTC)
         self.menu.append(self.bitstampBTC); self.menu.append(self.blockchainBTC)
 
         self.setRefreshMenu(self.menu)
@@ -187,12 +184,10 @@ class CryptoCoinPriceIndicator:
         self.LTCtickers = None
         self.btceLTC = gtk.RadioMenuItem(self.LTCtickers,"BTC-E"); self.btceLTC.connect("activate", lambda x: self.toggleLTCdisplay("btce")); self.btceLTC.show()
         self.LTCtickers = self.btceLTC
-        #self.mtgoxLTC = gtk.RadioMenuItem(self.LTCtickers,"MtGox"); self.mtgoxLTC.connect("activate", lambda x: self.toggleLTCdisplay("mtgox")); self.mtgoxLTC.show()
-        #self.BTCtickers = self.mtgoxBTC
 
         defSetLTC = gtk.MenuItem("Choose exchange : "); defSetLTC.show()
         self.menuLTC.append(defSetLTC)
-        self.menuLTC.append(self.btceLTC);#self.menuLTC.append(self.mtgoxLTC);
+        self.menuLTC.append(self.btceLTC)
         self.setRefreshMenu(self.menuLTC)
 
         self.getNewPricesLTC()
@@ -207,12 +202,10 @@ class CryptoCoinPriceIndicator:
         self.NMCtickers = None
         self.btceNMC = gtk.RadioMenuItem(self.NMCtickers,"BTC-E"); self.btceNMC.connect("activate", lambda x: self.toggleNMCdisplay("btce")); self.btceNMC.show()
         self.NMCtickers = self.btceNMC
-        #self.mtgoxLTC = gtk.RadioMenuItem(self.LTCtickers,"MtGox"); self.mtgoxLTC.connect("activate", lambda x: self.toggleLTCdisplay("mtgox")); self.mtgoxLTC.show()
-        #self.BTCtickers = self.mtgoxBTC
 
         defSetNMC = gtk.MenuItem("Choose exchange : "); defSetNMC.show()
         self.menuNMC.append(defSetNMC)
-        self.menuNMC.append(self.btceNMC);#self.menuLTC.append(self.mtgoxLTC);
+        self.menuNMC.append(self.btceNMC)
         self.setRefreshMenu(self.menuNMC)
 
         self.getNewPricesNMC()
@@ -227,12 +220,10 @@ class CryptoCoinPriceIndicator:
         self.PPCtickers = None
         self.btcePPC = gtk.RadioMenuItem(self.PPCtickers,"BTC-E"); self.btcePPC.connect("activate", lambda x: self.toggleNMCdisplay("btce")); self.btcePPC.show()
         self.PPCtickers = self.btcePPC
-        #self.mtgoxLTC = gtk.RadioMenuItem(self.LTCtickers,"MtGox"); self.mtgoxLTC.connect("activate", lambda x: self.toggleLTCdisplay("mtgox")); self.mtgoxLTC.show()
-        #self.BTCtickers = self.mtgoxBTC
 
         defSetPPC = gtk.MenuItem("Choose exchange : "); defSetPPC.show()
         self.menuPPC.append(defSetPPC)
-        self.menuPPC.append(self.btcePPC);#self.menuLTC.append(self.mtgoxLTC);
+        self.menuPPC.append(self.btcePPC)
         self.setRefreshMenu(self.menuPPC)
 
         self.getNewPricesPPC()
@@ -247,12 +238,10 @@ class CryptoCoinPriceIndicator:
         self.YACtickers = None
         self.bterYAC = gtk.RadioMenuItem(self.YACtickers,"Bter"); self.bterYAC.connect("activate", lambda x: self.toggleYACdisplay("bter")); self.bterYAC.show()
         self.YACtickers = self.bterYAC
-        #self.mtgoxLTC = gtk.RadioMenuItem(self.LTCtickers,"MtGox"); self.mtgoxLTC.connect("activate", lambda x: self.toggleLTCdisplay("mtgox")); self.mtgoxLTC.show()
-        #self.BTCtickers = self.mtgoxBTC
 
         defSetYAC = gtk.MenuItem("Choose exchange : "); defSetYAC.show()
         self.menuYAC.append(defSetYAC)
-        self.menuYAC.append(self.bterYAC);#self.menuLTC.append(self.mtgoxLTC);
+        self.menuYAC.append(self.bterYAC)
         self.setRefreshMenu(self.menuYAC)
 
         self.getNewPricesYAC()
@@ -356,16 +345,6 @@ class CryptoCoinPriceIndicator:
         dataOut = ""
         priceNow = BAD_RETRIEVE
 
-        priceNow = self.getMtGoxData("")
-        if priceNow == BAD_RETRIEVE:
-            priceNow = "TempDown"
-        else:
-            priceNow = str(priceNow)+" USD"
-        if "mtgox" in self.exchange:
-            dataOut = dataOut + ' | ' if dataOut != "" else dataOut
-            dataOut = dataOut + "MtGox: "+priceNow
-        self.mtgoxBTC.set_label("MtGox| "+str(priceNow))
-
         priceNow = self.getBTCEDataUSD("")
         if priceNow == BAD_RETRIEVE:
             priceNow = "TempDown"
@@ -403,15 +382,6 @@ class CryptoCoinPriceIndicator:
     def update_priceLTC(self):
         dataOut = ""
         priceNow = BAD_RETRIEVE
-        #priceNow = self.getMtGoxData("ltc")
-        #if priceNow == BAD_RETRIEVE:
-        #    priceNow = "TempDown"
-        #else:
-        #    priceNow = str(priceNow)+" USD"
-        #if self.exchangeLTC is "mtgox":
-        #    dataOut = dataOut + ' | ' if dataOut != "" else dataOut
-        #    dataOut = dataOut + "MtGox: "+priceNow
-        #self.mtgoxLTC.set_label("MtGox| "+str(priceNow))
         priceNow = self.getBTCEDataUSD("ltc")
         if priceNow == BAD_RETRIEVE:
             priceNow = "TempDown"
@@ -482,27 +452,6 @@ class CryptoCoinPriceIndicator:
             self.indYAC.set_label(dataOut)
         return True
 
-
-	# get mtgox data using JSON
-    def getMtGoxData(self,coin):
-        lstMtGox = BAD_RETRIEVE
-        try :
-            if coin is "ltc":
-                web_page = urllib2.urlopen("http://data.mtgox.com/api/1/LTCUSD/ticker").read()
-            elif coin is "nmc":
-                web_page = urllib2.urlopen("http://data.mtgox.com/api/1/NMCUSD/ticker").read()
-            else:
-                web_page = urllib2.urlopen("http://data.mtgox.com/api/1/BTCUSD/ticker").read()
-            data = json.loads(web_page)
-            lstMtGox = data['return']['last']['value']
-        except urllib2.HTTPError :
-            print("HTTPERROR!")
-        except urllib2.URLError :
-            print("URLERROR!")
-        except ValueError:  # includes simplejson.decoder.JSONDecodeError
-            print 'Decoding JSON has failed'
-        return "{0:,.2f}".format(float(lstMtGox))
-	
     # get btc-e data using json
     def getBTCEDataUSD(self,coin):
         lstBTCEprice = BAD_RETRIEVE
@@ -634,8 +583,6 @@ class CryptoCoinPriceIndicator:
             file = open(SETTINGSFILE, 'w')
             file.write(os.getcwd()+'\n')
             file.write('10 \n')
-            file.write('mtgox \n')
-            file.write('True \n')
             file.write('btce \n')
             file.write('True \n')
             file.write('btce \n')
